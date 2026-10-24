@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row text-center mb-4">
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm bg-white">
+            <h3>Ümumi Tədbirlər</h3>
+            <p class="display-4 text-primary">{{ total_events }}</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm bg-white">
+            <h3>Ümumi Qeydiyyatlar</h3>
+            <p class="display-4 text-success">{{ total_registrations }}</p>
+        </div>
+    </div>
+</div>
+
+<h2 class="mb-3">Ən Çox Qeydiyyat Olunan Tədbirlər</h2>
+<ul class="list-group">
+    {% for event in popular_events %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ event.title }}
+            <span class="badge bg-primary rounded-pill">{{ event.registrations|length }} iştirakçı</span>
+        </li>
+    {% else %}
+        <li class="list-group-item">Hələ ki qeydiyyat mövcud deyil.</li>
+    {% endfor %}
+{% endblock %}
